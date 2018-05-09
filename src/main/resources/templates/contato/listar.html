@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title> Listagem de contatos</title>
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Listagem de Contatos</h1>
+
+            <a class="btn btn-primary" style="margin-bottom: 10px" href="#">Cadastrar</a>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Categoria</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <th:block th:each="contato : ${contatos}">
+                    <tr>
+                        <td th:text="${contato.nome}">Bruno Rota Sargi</td>
+                        <td th:text="${contato.telefone}">99 99999 999</td>
+                        <td th:text="${contato.email}">brunorota@ensinobr.com.br</td>
+                        <td th:text="${contato.categoria.descricao}">Família</td>
+                        <td>
+                            <a href="#">Editar</a>
+                            <a href="#">Excluir</a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>
