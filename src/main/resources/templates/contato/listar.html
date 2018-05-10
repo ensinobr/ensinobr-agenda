@@ -30,7 +30,7 @@
                         <td th:text="${contato.email}">brunorota@ensinobr.com.br</td>
                         <td th:text="${contato.categoria.descricao}">Família</td>
                         <td>
-                            <a href="#">Editar</a>
+                            <a th:href="@{'/contato/' + ${contato.id} + '/editar'}" href="#">Editar</a>
                             <a href="#">Excluir</a>
                         </td>
                     </tr>

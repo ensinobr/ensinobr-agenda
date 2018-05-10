@@ -10,6 +10,9 @@
             <h1>Cadastrar Contatos</h1>
 
             <form th:object="${contato}" th:action="@{/contato/salvar}"  method="post">
+                
+                <input th:field="*{id}" type="hidden" id="id"/>
+                
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="nome">Nome</label>

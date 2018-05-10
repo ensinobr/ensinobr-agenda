@@ -7,6 +7,7 @@ import br.com.ensinobr.agenda.services.ContatoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +30,17 @@ public class ContatoController {
         model.addAttribute("contatos", contatoService.listarTodos());
         
         return "/contato/listar";
+    }
+    
+    @GetMapping("{id}/editar")
+    public String editar(@PathVariable("id") Long id, Model model){
+    
+        System.out.println("EDITARRRRRRRRRRRR: " + id);
+        
+        model.addAttribute("contato", contatoService.buscarPorId(id));
+        model.addAttribute("categorias", categoriaService.listarTodas());
+        
+        return "/contato/formulario";
     }
     
     @GetMapping("/novo")
