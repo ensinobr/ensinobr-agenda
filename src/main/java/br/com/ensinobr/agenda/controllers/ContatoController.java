@@ -1,10 +1,13 @@
 
 package br.com.ensinobr.agenda.controllers;
 
+import br.com.ensinobr.agenda.entities.Contato;
+import br.com.ensinobr.agenda.services.CategoriaService;
 import br.com.ensinobr.agenda.services.ContatoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ContatoController {
     
     private ContatoService contatoService;
+    
+    private CategoriaService categoriaService;
 
-    public ContatoController(ContatoService contatoService) {
+    public ContatoController(ContatoService contatoService, CategoriaService categoriaService) {
         this.contatoService = contatoService;
+        this.categoriaService = categoriaService;
     }
     
     @GetMapping("/listar")
@@ -22,6 +28,26 @@ public class ContatoController {
      
         model.addAttribute("contatos", contatoService.listarTodos());
         
-        return "contato/listar";
+        return "/contato/listar";
     }
+    
+    @GetMapping("/novo")
+    public String novo(Model model){
+        
+        model.addAttribute("contato", new Contato());
+        model.addAttribute("categorias", categoriaService.listarTodas());
+        
+        return "/contato/formulario";
+    }
+    
+    @PostMapping("/salvar")
+    public String salvar(Contato contato){
+        
+        System.out.println(contato);
+        
+        contatoService.salvar(contato);
+        
+        return "redirect:/contato/listar";
+    }
+    
 }

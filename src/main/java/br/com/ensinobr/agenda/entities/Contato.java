@@ -61,6 +61,10 @@ public class Contato {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Contato{" + "id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", categoria=" + categoria + '}';
+    }
     
 }
