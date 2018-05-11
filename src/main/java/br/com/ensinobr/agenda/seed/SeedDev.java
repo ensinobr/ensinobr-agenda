@@ -29,27 +29,35 @@ public class SeedDev implements ApplicationListener<ContextRefreshedEvent>{
         
         Categoria categoria1 = new Categoria();
         categoria1.setDescricao("Família");
-        
+
         Categoria categoria2 = new Categoria();
         categoria2.setDescricao("Trabalho");
         
-        categoriaRepository.save(categoria1);
-        categoriaRepository.save(categoria2);
+        if(categoriaRepository.count() == 0){
+            
+            categoriaRepository.save(categoria1);
+            categoriaRepository.save(categoria2);
+        }
+         
+        if(contatoRepository.count() == 0){
+            
+            Contato contato1 = new Contato();
+            contato1.setNome("Bruno Rota");
+            contato1.setTelefone("9999999");
+            contato1.setEmail("brunorota@ensinobr.com.br");
+            contato1.setCategoria(categoria1);
+
+            Contato contato2 = new Contato();
+            contato2.setNome("Durvalino");
+            contato2.setTelefone("888888");
+            contato2.setEmail("durvalino@ensinobr.com.br");
+            contato2.setCategoria(categoria2);
+
+            contatoRepository.save(contato1);
+            contatoRepository.save(contato2);
+        }
+         
         
-        Contato contato1 = new Contato();
-        contato1.setNome("Bruno Rota");
-        contato1.setTelefone("9999999");
-        contato1.setEmail("brunorota@ensinobr.com.br");
-        contato1.setCategoria(categoria1);
-        
-        Contato contato2 = new Contato();
-        contato2.setNome("Durvalino");
-        contato2.setTelefone("888888");
-        contato2.setEmail("durvalino@ensinobr.com.br");
-        contato2.setCategoria(categoria2);
-        
-        contatoRepository.save(contato1);
-        contatoRepository.save(contato2);
     }
     
 }
