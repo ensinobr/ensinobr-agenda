@@ -32,7 +32,7 @@ public class ContatoController {
         return "/contato/listar";
     }
     
-    @GetMapping("{id}/editar")
+    @GetMapping("/{id}/editar")
     public String editar(@PathVariable("id") Long id, Model model){
     
         System.out.println("EDITARRRRRRRRRRRR: " + id);
@@ -41,6 +41,14 @@ public class ContatoController {
         model.addAttribute("categorias", categoriaService.listarTodas());
         
         return "/contato/formulario";
+    }
+    
+    @GetMapping("/{id}/excluir")
+    public String excluir(@PathVariable("id") Long id){
+        
+        contatoService.removerPorId(id);
+        
+        return "redirect:/contato/listar";
     }
     
     @GetMapping("/novo")

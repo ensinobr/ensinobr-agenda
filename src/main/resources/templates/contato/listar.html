@@ -31,7 +31,8 @@
                         <td th:text="${contato.categoria.descricao}">Família</td>
                         <td>
                             <a th:href="@{'/contato/' + ${contato.id} + '/editar'}" href="#">Editar</a>
-                            <a href="#">Excluir</a>
+                            <a th:href="@{'/contato/' + ${contato.id} + '/excluir'}"
+                               th:onclick="'return confirm(\'Deseja excluir esse contato?\')'" href="#">Excluir</a>
                         </td>
                     </tr>
                 </th:block>
@@ -41,5 +42,17 @@
 
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="/bootstrap/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript">
+            
+            function confirmar(e){
+                
+                if(!confirm("Deseja excluir esse contato?")){
+                                        
+                    e.preventDefault();
+                }
+            }
+            
+        </script>
     </body>
 </html>
